@@ -1,7 +1,15 @@
 <template>
   <div>
-    <Header></Header>
-    <div class="article_list">
+    <!-- 默认横向排列 -->
+     <el-container direction="vertical">
+       <Header></Header>
+       <NavMenu></NavMenu>
+       <!-- <MySend></MySend> -->
+       <Main></Main>
+     </el-container>
+    <!-- <NavMenu></NavMenu> -->
+    <!-- <Header></Header> -->
+    <!-- <div class="article_list">
       <ul>
         <li v-for = "i in list" :key="i.subCode">
           <time v-text = "$utils.goodTime(i.create_at)"></time>
@@ -10,17 +18,18 @@
           </router-link>
         </li>
       </ul>
-    </div>
-    <Footer></Footer>
+    </div> -->
+    <!-- <Footer></Footer> -->
   </div>
 </template>
 
 <script>
 import Header from '../components/header.vue'
-import Footer from '../components/footer.vue'
-
+import Main from '../components/main.vue'
+import NavMenu from '../components/navMenu.vue'
+// import MySend from '../components/mySend.vue'
 export default {
-  components: { Header, Footer },
+  components: { Header, Main, NavMenu },
   data () {
     return {
       list: []
