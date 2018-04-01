@@ -4,7 +4,6 @@
      <el-container direction="vertical">
        <Header></Header>
        <NavMenu></NavMenu>
-       <!-- <MySend></MySend> -->
        <Main></Main>
      </el-container>
     <!-- <NavMenu></NavMenu> -->
@@ -27,7 +26,6 @@
 import Header from '../components/header.vue'
 import Main from '../components/main.vue'
 import NavMenu from '../components/navMenu.vue'
-// import MySend from '../components/mySend.vue'
 export default {
   components: { Header, Main, NavMenu },
   data () {

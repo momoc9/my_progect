@@ -1,10 +1,10 @@
 <template>
   <el-main>
-    haha
+    enen
   </el-main>
 </template>
 
-<script>
+<script type="text/ecmascript-6">
 export default {
   data () {
     return {
@@ -17,5 +17,5 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 </style>

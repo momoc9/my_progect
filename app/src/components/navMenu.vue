@@ -1,40 +1,38 @@
-<template>
-  <!-- <el-main> -->
+                                      
+ <template>
   <el-row>
-      <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect" active-text-color="#409EFF">
-        <router-link to="/jq">
-          <el-menu-item index="1" class="menu_item">我的派单</el-menu-item>
-        </router-link>
-        <el-menu-item index="2" class="menu_item">我的支持</el-menu-item>
-        <el-menu-item index="3" class="menu_item">我的审核</el-menu-item>
+      <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect" active-text-color="#409EFF" router>
+        <el-menu-item index="/mySend" class="menu_item">我的派单</el-menu-item>
+        <el-menu-item index="/mySupport" class="menu_item">我的支持</el-menu-item>
+        <el-menu-item index="myReview" class="menu_item">我的审核</el-menu-item>
       </el-menu>
     <div class="line"></div>
-  <!-- <el-col :span="24"><div class="grid-content bg-purple-dark"></div></el-col> -->
   </el-row>
-  <!-- </el-main> -->
 </template>
 <style>
-.el-menu--horizontal>.menu_item{
-     height: .8rem;
-     line-height: .8rem;
+  .el-menu--horizontal>.menu_item{
+    height: 1rem;
+    line-height: 1rem;
   }
 </style>
 <script>
-import Jq from '../page/jq.vue'
 export default {
-  components: {
-    Jq
-  },
-  data () {
+  // computed: {
+  //   activeIndex () {
+  //     return this.$router.path
+  //      console.log( this.$router.path,'3')
+  //   }
+  // }, 
+   data () {
     return {
-      activeIndex: '1',
-      activeIndex2: '1'
+      activeIndex:"/mySend" ,
+    }
+   },
+  methods: {
+    handleSelect (key, keyPath) {
+      console.log(key, keyPath)
+    
     }
   }
-//   methods: {
-//     handleSelect(key,keyPath) {
-//       console.log(key,keyPath)
-//     }
-//   }
 }
 </script>
