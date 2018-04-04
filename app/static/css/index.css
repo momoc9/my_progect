@@ -1,0 +1,34 @@
+
+#app>.el-padding {
+  padding-top: 0;
+}
+.reviewList {
+  width: 100%;
+}
+
+.listDetail {
+  display: flex;
+  height: 1rem;
+  font-size: .26rem;
+  line-height: 1rem;
+  justify-content: space-between;
+}
+
+.reviewTitle {
+  color: #909399;
+}
+
+.radius {
+  display: inline-block;
+  font-size: .22rem;
+  /* padding-top:  */
+}
+
+.radius i {
+  display: inline-block;
+  color: orange;
+  background: pink;
+  line-height: .3rem;
+  padding: .1rem .2rem;
+  border-radius: .2rem;
+}

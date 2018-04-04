@@ -10,7 +10,6 @@ import MySend from '../components/child/mySend.vue'
 import MyReview from '../components/child/myReview.vue'
 import MySupport from '../components/child/mySupport.vue'
 Vue.use(Router)
-
 export default new Router({
   routes: [
     // {

@@ -6,15 +6,18 @@ const path = require('path')
 
 module.exports = {
   dev: {
-
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/api/v1/**': {
-        target: 'https://cnodejs.org', // 你接口的域名
+      '/api': {
+        // target: 'https://cnodejs.org', // 你接口的域名
+        target: 'http://localhost:8080', 
+        changeOrigin: true,
         secure: false,
-        changeOrigin: false
+        pathRewrite: {
+          '^/api': ''
+        }
       }
     },
 
