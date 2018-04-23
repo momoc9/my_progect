@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+// import store from './store/store.js'
 // import axios from 'axios'
 // Vue.prototype.$http = axios //   axios并不是vue插件,所以只能在每个需要发送请求的组件中即时引入。为了解决这个问题，我们在引入 axios 之后，通过修改原型链，来更方便的使用。
 
@@ -12,9 +15,12 @@ import utils from './utils/index.js'
 Vue.prototype.$api = api
 Vue.prototype.$utils = utils
 
+Vue.use(ElementUI)
+
 Vue.config.productionTip = false
 /* eslint-disable no-new */
 new Vue({
+  // store,
   el: '#app',
   router,
   render: h => h(App)
