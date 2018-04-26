@@ -29,9 +29,11 @@ export default {
     // }
   },
   mounted () {
+    //通过bus接收到aside传过来的title
     Bus.$on('on', (msg) => {
       this.message = msg
       console.log(msg)
+      // 调用tabs的方法且将title名传给tabs
       this.$refs.child.addTab(1, msg)
     })
   }

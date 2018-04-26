@@ -24,59 +24,72 @@
 </template>
 
 <script type="text/ecmascript-6">
-import Bus from './bus.js'
+import Bus from "./bus.js"
+import MyDesktop from "../components/content/myDesktop"
+import UserAmdin from '../components/content/userAmdin'
 export default {
-  data () {
+  data() {
     return {
-      message: '',
-      activeTitle: '',
+      allComponents: [],
+      componentName: "",
+      message: "",
+      activeTitle: "",
       list: [
         {
-          title: '用户管理',
-          img: 'icon iconfont icon-houtaiyonghuguanli',
+          title: "用户管理",
+          
+          img: "icon iconfont icon-houtaiyonghuguanli",
           detail: [
-            { title: '用户管理' },
-            { title: '战狼行动图片上传' },
-            { title: '图片管理' }
+            { title: "用户管理",
+              component: MyDesktop,
+            },
+            { title: "战狼行动图片上传",
+              component: UserAmdin,
+            },
+            { title: "图片管理",
+              component: MyDesktop,
+            }
           ]
         },
         {
-          title: '图片管理',
-          img: 'icon iconfont icon-icon-test',
+          title: "图片管理",
+          component: MyDesktop,
+          img: "icon iconfont icon-icon-test",
           detail: [
-            { title: '应用商店图片上传' },
-            { title: '数据报表' },
-            { title: '在线用户列表' },
-            { title: '系统推送' }
+            { title: "应用商店图片上传" },
+            { title: "数据报表" },
+            { title: "在线用户列表" },
+            { title: "系统推送" }
           ]
         },
         {
-          title: '运维报表管理',
-          img: 'icon iconfont icon-yunyingguanli',
-          detail: [{ title: '客户经理统计报表' }]
+          title: "运维报表管理",
+          component: MyDesktop,
+          img: "icon iconfont icon-yunyingguanli",
+          detail: [{ title: "客户经理统计报表" }]
         }
       ]
     }
   },
-  components: {},
-  computed: {
-
+  components: {
+    // MyDesktop
   },
+  computed: {},
   methods: {
-    addTabFa (index, index2) {
+    addTabFa(index, index2) {
       // this.$refs.child.addTab(data)
-      this.activeTitle = this.list[index].detail[index2].title
+      this.activeTitle = this.list[index].detail[index2]
       // Bus.$emit('on', '1')
-      Bus.$emit('on', this.activeTitle)
+      Bus.$emit("on", this.activeTitle);
     },
-    handleOpen (key, keyPath) {
+    handleOpen(key, keyPath) {
       // console.log(key, keyPath)
     },
-    handleClose (key, keyPath) {
+    handleClose(key, keyPath) {
       // console.log(key, keyPath)
     }
   }
-}
+};
 </script>
 
 <style>

@@ -3,8 +3,8 @@
     <Header></Header>
     <el-container>
       <Aside></Aside>
-      <!-- <Main></Main> -->
       <router-view></router-view>
+      <!-- <Main></Main> -->
     </el-container>
   </el-container>
 </template>

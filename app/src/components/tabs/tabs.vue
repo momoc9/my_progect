@@ -3,14 +3,12 @@
     <!-- <router-link tag="div" :to="{name: 'myDesktop',params: { userId: 1 }}" class="hehe"> -->
       <el-tabs v-model="editableTabsValue2" type="card" closable @tab-remove="removeTab">
         <el-tab-pane
-          v-for="(item) in editableTabs2"
+          v-for="(item) in Tabs"
           :key="item.name"
           :label="item.title"
           :name="item.name"
           >
           <tab-component :index="index" :name="index"></tab-component>
-          <!-- <MyDesktop v-if="hehe"></MyDesktop>
-          <UserAmdin></UserAmdin> -->
         </el-tab-pane>
       </el-tabs>
     <!-- </router-link>
@@ -19,41 +17,50 @@
 </template>
 
 <script type="text/ecmascript-6">
-import MyDesktop from '../content/myDesktop'
-import UserAmdin from '../content/userAmdin'
+import Vue from 'vue'
+// import MyDesktop from '../content/myDesktop'
+// import UserAmdin from '../content/userAmdin'
 // import Bus from './bus.js'
 export default {
   data () {
     return {
       // myDesktop: MyDesktop,
       editableTabsValue2: '1',
-      editableTabs2: [
+      Tabs: [
         {
           title: '我的桌面',
           name: '1',
           // myDesktop: myDesktop
-          content: MyDesktop
+          content: ''
         }
       ],
       tabIndex: 1
     }
   },
   components: {
-    MyDesktop,
-    UserAmdin
+    // MyDesktop,
+    // UserAmdin
   },
   props: ['message'],
   methods: {
-    addTab (targetName, title) {
-      console.log(MyDesktop)
+    addTab (targetName, content) {
+       var exist = false
+        for (var i = 0; i < this.Tabs.length; i++) {
+          console.log(this.Tabs[0].title,'haha')
+          if (content.name == this.Tabs[i].name) {
+            exist = true
+            break
+          }
+        }
       let newTabName = ++this.tabIndex + ''
-      this.editableTabs2.push({
-        title: title,
+      this.Tabs.push({
+        title: content.title,
         name: newTabName,
-        content: MyDesktop
+        content: content.component
       })
+      console.log(newTabName,'newTabName')
       let _this = this
-      let tabComponent = Vue.component('tab-component', {
+      var tabComponent = Vue.component('tab-component', {
         render: function (h) {
           var comp = _this.Tabs[this.index].content
           return h(comp)
@@ -68,7 +75,7 @@ export default {
       this.editableTabsValue2 = newTabName
     },
     removeTab (targetName, title) {
-      let tabs = this.editableTabs2
+      let tabs = this.Tabs
       let activeName = this.editableTabsValue2
       if (activeName === targetName) {
         tabs.forEach((tab, index) => {
@@ -81,7 +88,7 @@ export default {
         })
       }
       this.editableTabsValue2 = activeName
-      this.editableTabs2 = tabs.filter(tab => tab.name !== targetName)
+      this.Tabs = tabs.filter(tab => tab.name !== targetName)
     }
   }
 }
