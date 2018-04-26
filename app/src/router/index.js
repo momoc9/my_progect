@@ -1,10 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-// import Index from '@/page/index'
-// import Content from '@/page/content'
-// import JQ from '@/page/jq'
 import Main from '../components/main.vue'
-import Hehe from '../components/hehe.vue'
+import MyDesktop from '../components/content/myDesktop.vue'
+// import Hehe from '../components/hehe.vue'
 
 Vue.use(Router)
 
@@ -12,25 +10,18 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/main/1'
+      redirect: '/main/1',
+      children: [
+        {
+          path: '/myDesktop',
+          name: 'myDesktop',
+          component: MyDesktop
+        }
+      ]
     },
     {
-      path: '/main/:id',
+      path: '/main/:id/:content',
       component: Main
-    },
-    {
-      path: '/hehe',
-      component: Hehe
     }
-    // {
-    //   path: '/content/:id',
-    //   name: 'Content',
-    //   component: Content
-    // },
-    // {
-    //   path: '/jq',
-    //   name: 'JQ',
-    //   component: JQ
-    // }
   ]
 })

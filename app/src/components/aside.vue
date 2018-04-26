@@ -3,49 +3,22 @@
      <el-menu
       default-active="2"
       class="el-menu-vertical-demo side-navigation"
+      active-text-color="#409EFF"
       @open="handleOpen"
       @close="handleClose"
       >
-      <el-submenu v-for="(item,  index) in list" v-bind:key="index" index="index+1">
+      <el-submenu v-for="(item,  index) in list" v-bind:key="index" :index=index>
         <template slot="title">
-          <i class="icon iconfont icon-houtaiyonghuguanli"></i>
+          <i :class="item.img"></i>
           <span>{{item.title}}</span>
         </template>
         <el-menu-item-group>
-          <router-link tag="div" class="tab-item" to="/main/1" v-for="(d, key, index2) in item.detail" v-bind:key="index2">
-           <el-menu-item index=(index+1)-(index2+1) @click="addTabFa">{{d.title}}</el-menu-item>
+          <router-link tag="div" class="tab-item" :to="`/main/${index}/${index2}`" v-for="(d, index2) in item.detail" v-bind:key="index2">
+          <!-- <router-link tag="div" class="tab-item" :to="`/main/${index}-${index2}`" v-for="(d, index2) in item.detail" v-bind:key="index2"> -->
+           <el-menu-item :index="`${index}-${index2}`" @click="addTabFa(index, index2)">{{d.title}}</el-menu-item>
           </router-link>
-           <!-- <router-link tag="div" class="tab-item" to="/main/2">
-          <el-menu-item index="1-2" @click="addTabFa">数据报表</el-menu-item>
-          </router-link>
-          <router-link tag="div" class="tab-item" to="/main/3">
-            <el-menu-item index="1-3" @click="addTabFa">在线用户列表</el-menu-item>
-          </router-link>
-          <router-link tag="div" class="tab-item" to="/main/4">
-            <el-menu-item index="1-4" @click="addTabFa">系统推送</el-menu-item>
-          </router-link> -->
         </el-menu-item-group>
       </el-submenu>
-      <!-- <el-submenu index="2">
-        <template slot="title">
-          <i class="icon iconfont icon-icon-test"></i>
-          <span>图片管理</span>
-        </template>
-        <el-menu-item-group>
-          <el-menu-item index="2-1">应用商店图片上传</el-menu-item>
-          <el-menu-item index="2-2">战狼行动图片上传</el-menu-item>
-          <el-menu-item index="2-3">图片管理</el-menu-item>
-        </el-menu-item-group>
-      </el-submenu>
-      <el-submenu index="3">
-        <template slot="title">
-          <i class="icon iconfont icon-yunyingguanli"></i>
-          <span>运维报表管理</span>
-        </template>
-        <el-menu-item-group>
-          <el-menu-item index="3-1">客户经理统计报表</el-menu-item>
-        </el-menu-item-group>
-      </el-submenu> -->
     </el-menu>
   </el-aside>
 </template>
@@ -56,6 +29,7 @@ export default {
   data () {
     return {
       message: '',
+      activeTitle: '',
       list: [
         {
           title: '用户管理',
@@ -85,10 +59,21 @@ export default {
     }
   },
   components: {},
+  computed: {
+
+  },
   methods: {
-    addTabFa () {
+    addTabFa (index, index2) {
       // this.$refs.child.addTab(data)
-      Bus.$emit('on', '1')
+      this.activeTitle = this.list[index].detail[index2].title
+      // Bus.$emit('on', '1')
+      Bus.$emit('on', this.activeTitle)
+    },
+    handleOpen (key, keyPath) {
+      // console.log(key, keyPath)
+    },
+    handleClose (key, keyPath) {
+      // console.log(key, keyPath)
     }
   }
 }

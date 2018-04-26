@@ -1,5 +1,7 @@
 <template>
-  <el-main>hehe</el-main>
+  <div class="page">
+      费劲
+  </div>
 </template>
 
 <script type="text/ecmascript-6">

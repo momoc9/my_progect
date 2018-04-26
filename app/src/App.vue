@@ -3,8 +3,8 @@
     <Header></Header>
     <el-container>
       <Aside></Aside>
-      <router-view></router-view>
       <!-- <Main></Main> -->
+      <router-view></router-view>
     </el-container>
   </el-container>
 </template>
@@ -13,9 +13,8 @@
 import Header from './components/header.vue'
 import Aside from './components/aside.vue'
 import Main from './components/main.vue'
-import Hehe from './components/hehe.vue'
 export default {
-  components: { Header, Aside, Main, Hehe }
+  components: { Header, Aside, Main }
   // data () {
   //   return {
   //     list: []

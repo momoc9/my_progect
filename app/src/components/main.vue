@@ -1,28 +1,26 @@
 <template>
   <el-main>
-    <!-- <div style="margin-bottom: 20px;">
-        <el-button
-          size="small"
-        >
-        {{message}}
-        </el-button>
-    </div> -->
     <Tabs ref="child"></Tabs>
+    <!-- <MyDesktop v-if="aa"></MyDesktop> -->
+    <router-view></router-view>
   </el-main>
 </template>
 
 <script type="text/ecmascript-6">
 import Tabs from './tabs/tabs'
+import MyDesktop from './content/myDesktop'
 import Bus from './bus.js'
 export default {
   data () {
     return {
       parentMsg: 'hello child',
-      message: ''
+      message: '',
+      aa: 'flase'
     }
   },
   components: {
-    Tabs
+    Tabs,
+    MyDesktop
   },
   methods: {
     // addTabFa (data) {
@@ -33,7 +31,8 @@ export default {
   mounted () {
     Bus.$on('on', (msg) => {
       this.message = msg
-      this.$refs.child.addTab(msg)
+      console.log(msg)
+      this.$refs.child.addTab(1, msg)
     })
   }
 }

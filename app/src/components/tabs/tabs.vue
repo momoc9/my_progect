@@ -1,56 +1,73 @@
 <template>
   <div>
-      <!-- <div style="margin-bottom: 20px;">
-        <el-button
-          size="small"
-           @click="addTab(editableTabsValue2)"
-        >
-        add tab
-        </el-button>
-      </div> -->
-      <em></em>
+    <!-- <router-link tag="div" :to="{name: 'myDesktop',params: { userId: 1 }}" class="hehe"> -->
       <el-tabs v-model="editableTabsValue2" type="card" closable @tab-remove="removeTab">
         <el-tab-pane
           v-for="(item) in editableTabs2"
           :key="item.name"
           :label="item.title"
           :name="item.name"
-        >
-          {{item.content}}
+          >
+          <tab-component :index="index" :name="index"></tab-component>
+          <!-- <MyDesktop v-if="hehe"></MyDesktop>
+          <UserAmdin></UserAmdin> -->
         </el-tab-pane>
       </el-tabs>
+    <!-- </router-link>
+    <router-view></router-view> -->
   </div>
 </template>
 
 <script type="text/ecmascript-6">
+import MyDesktop from '../content/myDesktop'
+import UserAmdin from '../content/userAmdin'
 // import Bus from './bus.js'
 export default {
   data () {
     return {
+      // myDesktop: MyDesktop,
       editableTabsValue2: '1',
       editableTabs2: [
         {
-          title: 'Tab 1',
+          title: '我的桌面',
           name: '1',
-          content: 'Tab 1 content'
+          // myDesktop: myDesktop
+          content: MyDesktop
         }
       ],
       tabIndex: 1
     }
   },
+  components: {
+    MyDesktop,
+    UserAmdin
+  },
   props: ['message'],
   methods: {
-    addTab (targetName) {
-      console.log(this.editableTabs2)
+    addTab (targetName, title) {
+      console.log(MyDesktop)
       let newTabName = ++this.tabIndex + ''
       this.editableTabs2.push({
-        title: 'New Tab',
+        title: title,
         name: newTabName,
-        content: 'New Tab content'
+        content: MyDesktop
+      })
+      let _this = this
+      let tabComponent = Vue.component('tab-component', {
+        render: function (h) {
+          var comp = _this.Tabs[this.index].content
+          return h(comp)
+        },
+        props: {
+          index: {
+            type: Number,
+            required: true
+          }
+        }
       })
       this.editableTabsValue2 = newTabName
     },
-    removeTab (targetName) {
+    removeTab (targetName, title) {
       let tabs = this.editableTabs2
       let activeName = this.editableTabsValue2
       if (activeName === targetName) {
@@ -71,10 +88,5 @@ export default {
 </script>
 
 <style>
-/* .el-tabs--card>.el-tabs__header .el-tabs__nav {
-    background: url('./acrossTab-2.png')
-}
-.el-tabs--card>.el-tabs__header .el-tabs__nav::after{
-     content:url('./acrossTab-2.png')
-} */
+
 </style>
